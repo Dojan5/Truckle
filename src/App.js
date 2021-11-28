@@ -12,19 +12,23 @@ function App() {
   const [frontAxle, setFrontAxle] = useState(rlTable.singleAxleNoPower);
   const [backAxle, setBackAxle] = useState(rlTable.singleAxleNoPower);
   const [grossWeight, setGrossWeight] = useState(gwTable[0]);
+  const [displayKilos, setDisplayKilos] = useState(true);
 
   const [result, setResult] = useState([0, 0, 0, 0]);
 
   const handleServiceWeightChange = (evt) => {
-    setServiceWeight(parseFloat(evt.target.value));
+    let value = parseFloat(evt.target.value);
+    setServiceWeight(value);
   };
 
   const handleFrontOverrideChange = (evt) => {
-    setFrontAxleOverride(parseFloat(evt.target.value));
+    let value = parseFloat(evt.target.value);
+    setFrontAxleOverride(value);
   };
 
   const handleBackOverrideChange = (evt) => {
-    setBackAxleOverride(parseFloat(evt.target.value));
+    let value = parseFloat(evt.target.value);
+    setBackAxleOverride(value);
   };
 
   const handleFrontAxleChange = (evt) => {
@@ -43,27 +47,39 @@ function App() {
   };
 
   const doCalculate = (bk) => {
+    let frontOverrideValue =
+      frontAxleOverride < 1000 ? frontAxleOverride : frontAxleOverride / 1000;
+    let backOverrideValue =
+      backAxleOverride < 1000 ? backAxleOverride : backAxleOverride / 1000;
+    let rlFront = parseFloat(frontAxle[bk]);
+    let rlBack = parseFloat(backAxle[bk]);
+    let gW = parseFloat(grossWeight[bk]);
+
     let frontAxleWeightAllowance =
-      frontAxleOverride < parseFloat(frontAxle[bk])
-        ? frontAxleOverride
-        : parseFloat(frontAxle[bk]);
-    //console.log("FrontAxleWeightAllowance: ", frontAxleWeightAllowance);
+      frontOverrideValue <= rlFront ? frontOverrideValue : rlFront;
+    console.log(typeof frontAxleWeightAllowance);
+
     let backAxleWeightAllowance =
-      backAxleOverride < parseFloat(backAxle[bk])
-        ? backAxleOverride
-        : parseFloat(backAxle[bk]);
-    //console.log("BackAxleWeightAllowance: ", backAxleWeightAllowance);
-    let addedTogether =
-      parseFloat(frontAxleWeightAllowance) +
-      parseFloat(backAxleWeightAllowance);
-    let grossWeightAllowance = parseFloat(grossWeight[bk]);
-    let result =
-      addedTogether < grossWeightAllowance
-        ? addedTogether
-        : parseFloat(grossWeight[bk]);
-    console.log(
-      `BK: ${bk + 1}, AD: ${addedTogether}, GW: ${grossWeightAllowance}`
-    );
+      backOverrideValue <= rlBack ? backOverrideValue : rlBack;
+    console.log(typeof backAxleWeightAllowance);
+
+    let addedTogether = frontAxleWeightAllowance + backAxleWeightAllowance;
+
+    let grossWeightAllowance = gW;
+    let result = addedTogether < grossWeightAllowance ? addedTogether : gW;
+
+    console.table({
+      frontAxleOverride,
+      backAxleOverride,
+      rlFront,
+      rlBack,
+      gW,
+      frontAxleWeightAllowance,
+      backAxleWeightAllowance,
+      addedTogether,
+      grossWeightAllowance,
+      result,
+    });
     return result;
   };
 
@@ -135,24 +151,42 @@ function App() {
           </div>
         </fieldset>
         <div className="result-table">
-        <table>
-          <thead>
-            <tr>
-              <td className="header">Class</td>
-              <td className="text-center header">Weight Allowance</td>
-              <td className="text-right header">Allowed Load</td>
-            </tr>
-          </thead>
-          <tbody>
-            {result.map((r, i) => (
+          <table>
+            <thead>
               <tr>
-                <td className="header">BK{i + 1}</td>
-                <td className="text-center">{r * 1}</td>
-                <td className="text-right">{r * 1000 - serviceWeight} kg</td>
+                <td className="header">Class</td>
+                <td className="text-center header">Weight Allowance</td>
+                <td className="text-right header">Allowed Load</td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {result.map((r, i) => (
+                <tr>
+                  <td className="header">BK{i + 1}</td>
+                  <td className="text-center">
+                    {displayKilos ? (<span>{r * 1000} kg</span>) : (<span>{r} t</span>)}
+                  </td>
+                  <td className="text-right">
+                    {displayKilos ? (
+                      <span>{r * 1000 - serviceWeight} kg</span>
+                    ) : (
+                      <span>{r - serviceWeight} t</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="unit-toggle">
+            <label
+              onClick={() => setDisplayKilos(!displayKilos)}
+            >Display in Kilogram</label>
+            <input
+              type="checkbox"
+              checked={displayKilos}
+              onChange={() => setDisplayKilos(!displayKilos)}
+            />
+          </div>
         </div>
         <button className="btn" onClick={calculate}>
           Calculate
