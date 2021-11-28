@@ -1,8 +1,9 @@
-import logo from "./logo.svg";
-import "./App.css";
+import "./App.scss";
 import gwTable from "./grossWeightTable.json";
 import rlTable from "./roadLoadTable.json";
 import React, { useState } from "react";
+import { Titlebar } from "./components/titlebar";
+import { Menubar } from "./components/menubar";
 
 function App() {
   const [serviceWeight, setServiceWeight] = useState(12000);
@@ -76,78 +77,88 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <div>
-        <label>Vehicle weight: </label>
-        <input
-          type="number"
-          name="weight"
-          value={serviceWeight}
-          onChange={handleServiceWeightChange}
-        />
-      </div>
-      <div>
-        <label>Front axle override: </label>
-        <input
-          type="number"
-          value={frontAxleOverride}
-          onChange={handleFrontOverrideChange}
-        />
-      </div>
-      <div>
-        <label>Back axle override: </label>
-        <input
-          type="number"
-          value={backAxleOverride}
-          onChange={handleBackOverrideChange}
-        />
-      </div>
-      <div>
-        <label>Front axle: </label>
-        <select name="frontAxle" onChange={handleFrontAxleChange}>
-          {Object.keys(rlTable).map((key) => (
-            <option value={key}>{key}</option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label>Back axle: </label>
-        <select name="backAxle" onChange={handleBackAxleChange}>
-          {Object.keys(rlTable).map((key) => (
-            <option value={key}>{key}</option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label>Something: </label>
-        <select name="grossWeight" onChange={handleGrossWeightChange}>
-          {Object.keys(gwTable).map((key) => (
-            <option value={key}>{key}</option>
-          ))}
-        </select>
-      </div>
-      <div>
+    <>
+      <div className="App">
+        <fieldset>
+          <legend>Vehicle Specification</legend>
+          <div className="form-control">
+            <label>Vehicle weight</label>
+            <input
+              type="number"
+              name="weight"
+              value={serviceWeight}
+              onChange={handleServiceWeightChange}
+            />
+          </div>
+          <div className="form-control">
+            <label>Front axle override</label>
+            <input
+              type="number"
+              value={frontAxleOverride}
+              onChange={handleFrontOverrideChange}
+            />
+          </div>
+          <div className="form-control">
+            <label>Back axle override</label>
+            <input
+              type="number"
+              value={backAxleOverride}
+              onChange={handleBackOverrideChange}
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Table Settings</legend>
+          <div className="form-control">
+            <label>Front axle</label>
+            <select name="frontAxle" onChange={handleFrontAxleChange}>
+              {Object.keys(rlTable).map((key) => (
+                <option value={key}>{key}</option>
+              ))}
+            </select>
+          </div>
+          <div className="form-control">
+            <label>Back axle</label>
+            <select name="backAxle" onChange={handleBackAxleChange}>
+              {Object.keys(rlTable).map((key) => (
+                <option value={key}>{key}</option>
+              ))}
+            </select>
+          </div>
+          <div className="form-control">
+            <label>Weight Table</label>
+            <select name="grossWeight" onChange={handleGrossWeightChange}>
+              {Object.keys(gwTable).map((key) => (
+                <option value={key}>{key}</option>
+              ))}
+            </select>
+          </div>
+        </fieldset>
+        <div className="result-table">
         <table>
           <thead>
             <tr>
-              <td>Class</td>
-              <td>Weight Allowance</td>
-              <td>Allowed Load</td>
+              <td className="header">Class</td>
+              <td className="text-center header">Weight Allowance</td>
+              <td className="text-right header">Allowed Load</td>
             </tr>
           </thead>
           <tbody>
             {result.map((r, i) => (
               <tr>
-                <td>BK{i + 1}</td>
-                <td>{r * 1}</td>
-                <td>{r * 1000 - serviceWeight}</td>
+                <td className="header">BK{i + 1}</td>
+                <td className="text-center">{r * 1}</td>
+                <td className="text-right">{r * 1000 - serviceWeight} kg</td>
               </tr>
             ))}
           </tbody>
         </table>
+        </div>
+        <button className="btn" onClick={calculate}>
+          Calculate
+        </button>
       </div>
-      <button onClick={calculate}>Calculate</button>
-    </div>
+    </>
   );
 }
 

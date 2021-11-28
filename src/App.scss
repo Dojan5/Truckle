@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Arimo&family=Lato&display=swap");
+
+$radius: 5px;
+
+html,
+body {
+  font-family: "Lato", sans-serif;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #f1edee;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.titlebar {
+  & h1 {
+    font-family: "Arimo", sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0.65rem;
+    padding: 0;
+  }
+}
+
+.App {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.btn {
+  background: #3d5467;
+  border: none;
+  margin: 1rem;
+  padding: 1rem;
+  border-radius: $radius;
+  color: white;
+}
+
+fieldset {
+  position: relative;
+  margin: 1rem;
+  background-color: #3d5467;
+  border: none;
+  border-radius: $radius;
+  color: white;
+  & legend {
+    text-transform: uppercase;
+    font-family: "Arimo", sans-serif;
+    font-size: 10px;
+    position: absolute;
+    bottom: 100%;
+    background-color: inherit;
+    padding: 0.25rem 0.5rem;
+    color: currentColor;
+    border-radius: $radius $radius 0 0;
+  }
+}
+
+.form-control {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  position: relative;
+  margin: 2rem 0rem 0rem 0rem;
+  border-radius: 0 $radius $radius $radius;
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+  & label {
+    text-transform: uppercase;
+    font-family: "Arimo", sans-serif;
+    font-size: 10px;
+    position: absolute;
+    bottom: 100%;
+    background-color: inherit;
+    padding: 0.25rem 0.5rem;
+    color: #3d5467;
+    border-radius: $radius $radius 0 0;
+  }
+  & input,
+  & select {
+    border: none;
+    padding: 0.25rem;
+    margin: 0.25rem;
+    outline: none;
+  }
+}
+
+.result-table {
+  background-color: #3d5467;
+  margin: 0 1rem 0 1rem;
+  margin-top: auto;
+  overflow: hidden;
+  padding: .25rem;
+
+  border-radius: $radius;
+  & table {
+    width: 100%;
+    border-collapse: collapse;
+    & tr,
+    & td {
+      border: none;
+    }
+    & td {
+      color: white;
+      padding: 0.25rem;
+    }
+    .text-center {
+      text-align: center;
+    }
+    .text-right {
+      text-align: right;
+    }
+    & .header {
+        font-family: "Arimo", sans-serif;
+      font-weight: bold;
+      color: white;
+      padding: 0.25rem;
+      font-size: 12px;
+    }
+  }
+}
