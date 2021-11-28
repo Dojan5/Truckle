@@ -1,0 +1,7 @@
+{
+  "singleAxleNoPower": [10, 10, 8, 10],
+  "singleAxleWithPower": [11.5, 10, 8, 11.5],
+  "boggi": [18, 16, 12, 18],
+  "boggiVVF": [19, 16, 12, 19],
+  "triple": [26, 22, 13, 26]
+}
