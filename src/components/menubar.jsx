@@ -9,7 +9,9 @@ export const Menubar = () => {
     return (
         <nav className="app-menu">
             <MenuButton to="/" icon={<CalculatorIcon />}>{t("interface.calculator")}</MenuButton>
-            <MenuButton to="/loading">Loading</MenuButton>
+            {(process.env.NODE_ENV && process.env.NODE_ENV === 'development') && (
+                <MenuButton to="/loading">Loading</MenuButton>
+            )}
             <MenuButton to="/about" icon={<InformationIcon />}>{t("interface.about")}</MenuButton>
         </nav>
     )
@@ -18,6 +20,7 @@ export const Menubar = () => {
 const MenuButton = ({ children, to, icon }) => {
     const location = useLocation();
     const match = (location.pathname === to);
+    
     return (
         <button className={match ? "menu-button active" : "menu-button"}>
             {icon && icon}

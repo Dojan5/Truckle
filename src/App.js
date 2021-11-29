@@ -20,45 +20,40 @@ function App() {
   const handleServiceWeightChange = (evt) => {
     let value = parseFloat(evt.target.value);
     setServiceWeight(value);
-    calculate();
   };
 
   const handleFrontOverrideChange = (evt) => {
     let value = parseFloat(evt.target.value);
     setFrontAxleOverride(value);
-    calculate();
   };
 
   const handleBackOverrideChange = (evt) => {
     let value = parseFloat(evt.target.value);
     setBackAxleOverride(value);
-    calculate();
   };
 
   const handleFrontAxleChange = (evt) => {
     let inputValue = evt.target.value;
     let value = (typeof(inputValue) !== "string") ? inputValue.toString() : inputValue;
     setFrontAxle(value);
-    calculate();
   };
 
   const handleBackAxleChange = (evt) => {
     let inputValue = evt.target.value;
     let value = (typeof(inputValue) !== "string") ? inputValue.toString() : inputValue;
     setBackAxle(value);
-    calculate();
   };
 
   const handleGrossWeightChange = (evt) => {
     let inputValue = evt.target.value;
     let value = (typeof(inputValue) !== "string") ? inputValue.toString() : inputValue;
     setGrossWeight(value);
-    calculate();
   };
 
   const handleNumericInputFocus = (evt) => evt.target.select();
 
   const calculate = (evt) => {
+    console.table(frontAxleOverride, backAxleOverride, frontAxle, backAxle, grossWeight);
     if (frontAxleOverride === null || frontAxleOverride === undefined) return;
     if (backAxleOverride === null || backAxleOverride === undefined) return;
     if (frontAxle === null || frontAxle === undefined) return;
@@ -185,6 +180,7 @@ function App() {
             />
           </div>
         </div>
+        <button onClick={() => calculate()} className="btn">{t("interface.calculate")}</button>
       </div>
     </>
   );
