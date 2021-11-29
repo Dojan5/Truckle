@@ -56,6 +56,8 @@ function App() {
     calculate();
   };
 
+  const handleNumericInputFocus = (evt) => evt.target.select();
+
   const calculate = (evt) => {
     if (frontAxleOverride === null || frontAxleOverride === undefined) return;
     if (backAxleOverride === null || backAxleOverride === undefined) return;
@@ -85,6 +87,7 @@ function App() {
               type="number"
               name="weight"
               value={serviceWeight}
+              onFocus={handleNumericInputFocus}
               onChange={handleServiceWeightChange}
               pattern="[0-9]*"
             />
@@ -94,6 +97,7 @@ function App() {
             <input
               type="number"
               value={frontAxleOverride}
+              onFocus={handleNumericInputFocus}
               onChange={handleFrontOverrideChange}
               pattern="[0-9]*"
             />
@@ -103,6 +107,7 @@ function App() {
             <input
               type="number"
               value={backAxleOverride}
+              onFocus={handleNumericInputFocus}
               onChange={handleBackOverrideChange}
               pattern="[0-9]*"
             />
