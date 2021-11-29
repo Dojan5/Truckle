@@ -4,7 +4,8 @@
         "calculator": "Kalkylator",
         "about": "Om",
         "pleaseSelect": "Välj",
-        "loading": "Laddar"
+        "loading": "Laddar",
+        "language": "Språk"
     },
     "units" : {
         "kg": {
@@ -18,7 +19,7 @@
     },
     "vehicleSpecification": "Fordonsinställningar",
     "registrationNumber": "Registreringsnummer",
-    "vehicleWeight": "Servicevikt",
+    "vehicleWeight": "Tjänstevikt",
     "frontAxleOverride": "Bakaxeltryck",
     "backAxleOverride": "Framaxeltryck",
     "tableSettings": "Tabellinställningar",

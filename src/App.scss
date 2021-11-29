@@ -3,6 +3,13 @@
 $radius: 5px;
 $menubarHeight: 64px;
 $primary: #3d5467;
+$fancy-gradient: linear-gradient(
+  45deg,
+  #E67229,
+  #d029e6,
+  #294ce6
+);
+$fancy-animation: bg-animation 45s infinite alternate;
 
 html,
 body {
@@ -226,4 +233,50 @@ nav.app-menu {
   100% {
     transform: rotate(360deg);
   }
+}
+
+section.about-page {
+  height: 100%;
+  color: #333;
+  padding: 1rem;
+  h1 {
+    font-family: "Arimo", sans-serif;
+  }
+}
+
+fieldset.language-switcher {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  & button {
+    flex: 1;
+    margin: .5rem;
+    background: #eee;
+    color: $primary;
+    border: none;
+    outline: none;
+    min-height: 64px;
+    text-transform: uppercase;
+    &.active {
+      outline: 4px solid $primary;
+      outline-offset: -8px;
+    }
+  }
+}
+
+a.spiffy-link {
+  background-image: $fancy-gradient;
+  background-size: 500%;
+  background-clip: text;
+  font-weight: bold;
+  animation: $fancy-animation;
+  color: white;
+  color: transparent;
+}
+
+img.teeko-image { width: 100%; }
+
+@keyframes bg-animation {
+  0% { background-position: left; }
+  100% { background-position: right; }
 }

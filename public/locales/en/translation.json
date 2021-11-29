@@ -4,7 +4,8 @@
         "calculator": "Calculator",
         "about": "About",
         "pleaseSelect": "Please select",
-        "loading": "Loading"
+        "loading": "Loading",
+        "language": "Language"
     },
     "units" : {
         "kg": {

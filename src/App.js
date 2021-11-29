@@ -2,7 +2,7 @@ import "./App.scss";
 import gwTable from "./data/grossWeightTable.json";
 import rlTable from "./data/roadLoadTable.json";
 import React, { useState } from "react";
-import { calculate as calculateTS } from "./functions/calculations.ts";
+import { calculate as calculateTS, calculateAllowedLoad, convertToTonnes } from "./functions/calculations.ts";
 import { useTranslation } from "react-i18next";
 
 function App() {
@@ -115,7 +115,7 @@ function App() {
             <select name="frontAxle" onChange={handleFrontAxleChange}>
               <option value={null}>{t("interface.pleaseSelect")}</option>
               {Object.keys(rlTable).map((key) => (
-                <option value={key}>{key}</option>
+                <option key={"fa" + key} value={key}>{key}</option>
               ))}
             </select>
           </div>
@@ -124,7 +124,7 @@ function App() {
             <select name="backAxle" onChange={handleBackAxleChange}>
               <option value={null}>{t("interface.pleaseSelect")}</option>
               {Object.keys(rlTable).map((key) => (
-                <option value={key}>{key}</option>
+                <option key={"ba" + key} value={key}>{key}</option>
               ))}
             </select>
           </div>
@@ -133,7 +133,7 @@ function App() {
             <select name="grossWeight" onChange={handleGrossWeightChange}>
               <option value={null}>{t("interface.pleaseSelect")}</option>
               {Object.keys(gwTable).map((key) => (
-                <option value={key}>{key}</option>
+                <option key={"gw" + key} value={key}>{key}</option>
               ))}
             </select>
           </div>
@@ -149,20 +149,20 @@ function App() {
             </thead>
             <tbody>
               {result.map((r, i) => (
-                <tr>
+                <tr key={"r" + i}>
                   <td className="header">BK{i + 1}</td>
                   <td className="text-center">
                     {displayKilos ? (
                       <span>{r} kg</span>
                     ) : (
-                      <span>{r / 1000} t</span>
+                      <span>{convertToTonnes(r)} t</span>
                     )}
                   </td>
                   <td className="text-right">
                     {displayKilos ? (
-                      <span>{r - serviceWeight} kg</span>
+                      <span>{calculateAllowedLoad(r, serviceWeight)} kg</span>
                     ) : (
-                      <span>{r / 1000 - serviceWeight} t</span>
+                      <span>{convertToTonnes(calculateAllowedLoad(r, serviceWeight))} t</span>
                     )}
                   </td>
                 </tr>

@@ -16,7 +16,7 @@ ReactDOM.render(
           <Routes>
             <Route path="/" element={<App />} />
             <Route path="/loading" element={<LoadingPage />} />
-            <Route path="/about" />
+            <Route path="/about" element={<AboutPage />} />
           </Routes>
         </section>
         <Menubar />

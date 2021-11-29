@@ -80,6 +80,11 @@ export function convertToKilo(value: number): number {
     return (value < 1000) ? (value * 1000) : value;
 }
 
+export function calculateAllowedLoad(weightAllowance: number, serviceWeight: number): number {
+    let value = ((weightAllowance - serviceWeight) < 0) ? 0 : (weightAllowance - serviceWeight);
+    return value; 
+}
+
 function getGrossWeightValue(key: string, bk: BearingClass): number {
     let tableValue = grossWeightTable[key]
     let value = convertToKilo(tableValue[bk]);

@@ -2,7 +2,7 @@ import React from 'react';
 import { LoadingSpinner } from '../components';
 
 export const LoadingPage = () => (
-    <div class="loading-page">
+    <div className="loading-page">
         <LoadingSpinner />
     </div>
 )
