@@ -280,3 +280,45 @@ img.teeko-image { width: 100%; }
   0% { background-position: left; }
   100% { background-position: right; }
 }
+
+.toggle-switch {
+  $margin: 4px;
+  $width: 38 + $margin;
+  $height: $width / 2;
+  $inner: $height - 8px;
+  position: relative;
+  display: inline-block;
+  width: $width;
+  height: $height;
+  & input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  & .toggle-switch-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #eee;
+    border-radius: $height;
+    &::before {
+      position: absolute;
+      content: '';
+      width: $inner;
+      height: $inner;
+      top: $margin;
+      left: $margin;
+      background-color: $primary;
+      border-radius: $inner;
+      transition: all 150ms ease-out;
+    }
+  }
+  & input:checked + .toggle-switch-slider {
+    &::before {
+      transform: translateX(150%);
+    }
+  }
+}

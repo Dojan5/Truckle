@@ -1,6 +1,6 @@
 {
     "interface": {
-        "calculate": "Kalkylera",
+        "calculate": "Beräkna",
         "calculator": "Kalkylator",
         "about": "Om",
         "pleaseSelect": "Välj",
@@ -8,6 +8,7 @@
         "language": "Språk"
     },
     "units" : {
+        "label": "Mått",
         "kg": {
             "name": "kilo",
             "shorthand": "kg"
@@ -20,8 +21,8 @@
     "vehicleSpecification": "Fordonsinställningar",
     "registrationNumber": "Registreringsnummer",
     "vehicleWeight": "Tjänstevikt",
-    "frontAxleOverride": "Bakaxeltryck",
-    "backAxleOverride": "Framaxeltryck",
+    "frontAxleOverride": "Axelbelastning (fram)",
+    "backAxleOverride": "Axelbelastning (bak)",
     "tableSettings": "Tabellinställningar",
     "frontAxle": "Framaxel",
     "backAxle": "Bakaxel",

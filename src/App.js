@@ -2,6 +2,7 @@ import "./App.scss";
 import gwTable from "./data/grossWeightTable.json";
 import rlTable from "./data/roadLoadTable.json";
 import React, { useState } from "react";
+import { ToggleSwitch } from "./components";
 import { calculate as calculateTS, calculateAllowedLoad, convertToTonnes } from "./functions/calculations.ts";
 import { useTranslation } from "react-i18next";
 
@@ -178,6 +179,7 @@ function App() {
               checked={displayKilos}
               onChange={() => setDisplayKilos(!displayKilos)}
             />
+            {/* <ToggleSwitch clickHandler={() => setDisplayKilos(!displayKilos)} toggleState={displayKilos} /> */}
           </div>
         </div>
         <button onClick={() => calculate()} className="btn">{t("interface.calculate")}</button>
