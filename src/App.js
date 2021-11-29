@@ -3,8 +3,10 @@ import gwTable from "./data/grossWeightTable.json";
 import rlTable from "./data/roadLoadTable.json";
 import React, { useState } from "react";
 import { calculate as calculateTS } from "./functions/calculations.ts";
+import { useTranslation } from "react-i18next";
 
 function App() {
+  const [t, i18n] = useTranslation();
   const [serviceWeight, setServiceWeight] = useState(12000);
   const [frontAxleOverride, setFrontAxleOverride] = useState(0);
   const [backAxleOverride, setBackAxleOverride] = useState(0);
@@ -62,9 +64,9 @@ function App() {
     <>
       <div className="App">
         <fieldset>
-          <legend>Vehicle Specification</legend>
+          <legend>{t("vehicleSpecification")}</legend>
           <div className="form-control">
-            <label>Vehicle weight</label>
+            <label>{t("vehicleWeight")}</label>
             <input
               type="number"
               name="weight"
@@ -73,7 +75,7 @@ function App() {
             />
           </div>
           <div className="form-control">
-            <label>Front axle override</label>
+            <label>{t("frontAxleOverride")}</label>
             <input
               type="number"
               value={frontAxleOverride}
@@ -81,7 +83,7 @@ function App() {
             />
           </div>
           <div className="form-control">
-            <label>Back axle override</label>
+            <label>{t("backAxleOverride")}</label>
             <input
               type="number"
               value={backAxleOverride}
@@ -90,29 +92,29 @@ function App() {
           </div>
         </fieldset>
         <fieldset>
-          <legend>Table Settings</legend>
+          <legend>{t("tableSettings")}</legend>
           <div className="form-control">
-            <label>Front axle</label>
+            <label>{t("frontAxle")}</label>
             <select name="frontAxle" onChange={handleFrontAxleChange}>
-              <option value={null}>Please select</option>
+              <option value={null}>{t("interface.pleaseSelect")}</option>
               {Object.keys(rlTable).map((key) => (
                 <option value={key}>{key}</option>
               ))}
             </select>
           </div>
           <div className="form-control">
-            <label>Back axle</label>
+            <label>{t("backAxle")}</label>
             <select name="backAxle" onChange={handleBackAxleChange}>
-              <option value={null}>Please select</option>
+              <option value={null}>{t("interface.pleaseSelect")}</option>
               {Object.keys(rlTable).map((key) => (
                 <option value={key}>{key}</option>
               ))}
             </select>
           </div>
           <div className="form-control">
-            <label>Weight Table</label>
+            <label>{t("weightTable")}</label>
             <select name="grossWeight" onChange={handleGrossWeightChange}>
-              <option value={null}>Please select</option>
+              <option value={null}>{t("interface.pleaseSelect")}</option>
               {Object.keys(gwTable).map((key) => (
                 <option value={key}>{key}</option>
               ))}
@@ -123,9 +125,9 @@ function App() {
           <table>
             <thead>
               <tr>
-                <td className="header">Class</td>
-                <td className="text-center header">Weight Allowance</td>
-                <td className="text-right header">Allowed Load</td>
+                <td className="header">{t("class")}</td>
+                <td className="text-center header">{t("weightAllowance")}</td>
+                <td className="text-right header">{t("allowedLoad")}</td>
               </tr>
             </thead>
             <tbody>

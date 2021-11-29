@@ -1,0 +1,30 @@
+{
+    "interface": {
+        "calculate": "Kalkylera",
+        "calculator": "Kalkylator",
+        "about": "Om",
+        "pleaseSelect": "Välj"
+    },
+    "units" : {
+        "kg": {
+            "name": "kilo",
+            "shorthand": "kg"
+        },
+        "tn": {
+            "name": "ton",
+            "shorthand": "t"
+        }
+    },
+    "vehicleSpecification": "Fordonsinställningar",
+    "registrationNumber": "Registreringsnummer",
+    "vehicleWeight": "Servicevikt",
+    "frontAxleOverride": "Front axle override",
+    "backAxleOverride": "Back axle override",
+    "tableSettings": "Tabellinställningar",
+    "frontAxle": "Front axle",
+    "backAxle": "Back axle",
+    "weightTable": "Weight table",
+    "class": "Klass",
+    "weightAllowance": "Lastvikt",
+    "allowedLoad": "Tillåten lastvikt"
+}

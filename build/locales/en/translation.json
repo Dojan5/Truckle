@@ -1,0 +1,30 @@
+{
+    "interface": {
+        "calculate": "Calculate",
+        "calculator": "Calculator",
+        "about": "About",
+        "pleaseSelect": "Please select"
+    },
+    "units" : {
+        "kg": {
+            "name": "kilogramme",
+            "shorthand": "kg"
+        },
+        "tn": {
+            "name": "tonne",
+            "shorthand": "t"
+        }
+    },
+    "vehicleSpecification": "Vehicle specification",
+    "registrationNumber": "Registration number",
+    "vehicleWeight": "Vehicle weight",
+    "frontAxleOverride": "Front axle override",
+    "backAxleOverride": "Back axle override",
+    "tableSettings": "Table settings",
+    "frontAxle": "Front axle",
+    "backAxle": "Back axle",
+    "weightTable": "Weight table",
+    "class": "Class",
+    "weightAllowance": "Weight allowance",
+    "allowedLoad": "Allowed load"
+}
