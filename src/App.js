@@ -2,11 +2,12 @@ import "./App.scss";
 import gwTable from "./data/grossWeightTable.json";
 import rlTable from "./data/roadLoadTable.json";
 import React, { useState } from "react";
+import { Menubar } from './components/menubar';
 import { calculate as calculateTS } from "./functions/calculations.ts";
 import { useTranslation } from "react-i18next";
 
 function App() {
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
   const [serviceWeight, setServiceWeight] = useState(12000);
   const [frontAxleOverride, setFrontAxleOverride] = useState(0);
   const [backAxleOverride, setBackAxleOverride] = useState(0);
@@ -62,6 +63,7 @@ function App() {
 
   return (
     <>
+      <Menubar />
       <div className="App">
         <fieldset>
           <legend>{t("vehicleSpecification")}</legend>
@@ -164,7 +166,7 @@ function App() {
           </div>
         </div>
         <button className="btn" onClick={calculate}>
-          Calculate
+        {t("interface.calculate")}
         </button>
       </div>
     </>
