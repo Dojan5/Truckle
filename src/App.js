@@ -2,7 +2,6 @@ import "./App.scss";
 import gwTable from "./data/grossWeightTable.json";
 import rlTable from "./data/roadLoadTable.json";
 import React, { useState } from "react";
-import { Menubar } from './components/menubar';
 import { calculate as calculateTS } from "./functions/calculations.ts";
 import { useTranslation } from "react-i18next";
 
@@ -11,9 +10,9 @@ function App() {
   const [serviceWeight, setServiceWeight] = useState(12000);
   const [frontAxleOverride, setFrontAxleOverride] = useState(0);
   const [backAxleOverride, setBackAxleOverride] = useState(0);
-  const [frontAxle, setFrontAxle] = useState(rlTable.singleAxleNoPower);
-  const [backAxle, setBackAxle] = useState(rlTable.singleAxleNoPower);
-  const [grossWeight, setGrossWeight] = useState(gwTable[0]);
+  const [frontAxle, setFrontAxle] = useState(null);
+  const [backAxle, setBackAxle] = useState(null);
+  const [grossWeight, setGrossWeight] = useState(null);
   const [displayKilos, setDisplayKilos] = useState(true);
 
   const [result, setResult] = useState([0, 0, 0, 0]);
@@ -21,34 +20,48 @@ function App() {
   const handleServiceWeightChange = (evt) => {
     let value = parseFloat(evt.target.value);
     setServiceWeight(value);
+    calculate();
   };
 
   const handleFrontOverrideChange = (evt) => {
     let value = parseFloat(evt.target.value);
     setFrontAxleOverride(value);
+    calculate();
   };
 
   const handleBackOverrideChange = (evt) => {
     let value = parseFloat(evt.target.value);
     setBackAxleOverride(value);
+    calculate();
   };
 
   const handleFrontAxleChange = (evt) => {
-    setFrontAxle(evt.target.value);
+    let inputValue = evt.target.value;
+    let value = (typeof(inputValue) !== "string") ? inputValue.toString() : inputValue;
+    setFrontAxle(value);
+    calculate();
   };
 
   const handleBackAxleChange = (evt) => {
-    setBackAxle(evt.target.value);
+    let inputValue = evt.target.value;
+    let value = (typeof(inputValue) !== "string") ? inputValue.toString() : inputValue;
+    setBackAxle(value);
+    calculate();
   };
 
   const handleGrossWeightChange = (evt) => {
-    setGrossWeight(evt.target.value);
+    let inputValue = evt.target.value;
+    let value = (typeof(inputValue) !== "string") ? inputValue.toString() : inputValue;
+    setGrossWeight(value);
+    calculate();
   };
 
   const calculate = (evt) => {
-    if (frontAxle === null) return;
-    if (backAxle === null) return;
-    if (grossWeight === null) return;
+    if (frontAxleOverride === null || frontAxleOverride === undefined) return;
+    if (backAxleOverride === null || backAxleOverride === undefined) return;
+    if (frontAxle === null || frontAxle === undefined) return;
+    if (backAxle === null || backAxle === undefined) return;
+    if (grossWeight === null || backAxle === undefined) return;
 
     let result = calculateTS(
       frontAxleOverride,
@@ -63,7 +76,6 @@ function App() {
 
   return (
     <>
-      <Menubar />
       <div className="App">
         <fieldset>
           <legend>{t("vehicleSpecification")}</legend>
@@ -74,6 +86,7 @@ function App() {
               name="weight"
               value={serviceWeight}
               onChange={handleServiceWeightChange}
+              pattern="[0-9]*"
             />
           </div>
           <div className="form-control">
@@ -82,6 +95,7 @@ function App() {
               type="number"
               value={frontAxleOverride}
               onChange={handleFrontOverrideChange}
+              pattern="[0-9]*"
             />
           </div>
           <div className="form-control">
@@ -90,6 +104,7 @@ function App() {
               type="number"
               value={backAxleOverride}
               onChange={handleBackOverrideChange}
+              pattern="[0-9]*"
             />
           </div>
         </fieldset>
@@ -165,9 +180,6 @@ function App() {
             />
           </div>
         </div>
-        <button className="btn" onClick={calculate}>
-        {t("interface.calculate")}
-        </button>
       </div>
     </>
   );

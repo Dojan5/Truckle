@@ -1,5 +1,8 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AboutPage, LoadingPage } from './pages';
+import { Menubar } from './components';
 import App from './App';
 import 'normalize.css';
 import reportWebVitals from './reportWebVitals';
@@ -7,8 +10,17 @@ import './localisation/i18n';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback={<div>Help!</div>}>
-    <App />
+    <Suspense fallback={<LoadingPage />}>
+      <Router>
+        <section className="app-content">
+          <Routes>
+            <Route path="/" element={<App />} />
+            <Route path="/loading" element={<LoadingPage />} />
+            <Route path="/about" />
+          </Routes>
+        </section>
+        <Menubar />
+      </Router>
     </Suspense>
   </React.StrictMode>,
   document.getElementById('root')

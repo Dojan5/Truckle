@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Arimo&family=Lato&display=swap");
 
 $radius: 5px;
+$menubarHeight: 48px;
 
 html,
 body {
@@ -142,4 +143,20 @@ fieldset {
       font-size: 12px;
     }
   }
+}
+
+section.app-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin-bottom: $menubarHeight;
+  padding-bottom: 1rem;
+}
+
+nav.app-menu {
+  height: $menubarHeight;
+  background-color: orange;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
