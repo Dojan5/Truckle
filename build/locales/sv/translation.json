@@ -3,7 +3,8 @@
         "calculate": "Kalkylera",
         "calculator": "Kalkylator",
         "about": "Om",
-        "pleaseSelect": "Välj"
+        "pleaseSelect": "Välj",
+        "loading": "Laddar"
     },
     "units" : {
         "kg": {

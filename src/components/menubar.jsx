@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 import { CalculatorIcon, InformationIcon } from '../icons'; 
 
@@ -19,14 +19,19 @@ export const Menubar = () => {
 
 const MenuButton = ({ children, to, icon }) => {
     const location = useLocation();
+    const navigate = useNavigate();
     const match = (location.pathname === to);
+
+    const handleClick = () => {
+        navigate(to);
+    }
     
     return (
-        <button className={match ? "menu-button active" : "menu-button"}>
+        <button className={match ? "menu-button active" : "menu-button"}
+            onClick={() => handleClick()}
+        >
             {icon && icon}
-            <Link to={to}>
-                {children}
-            </Link>
+            {children}
         </button>
     )
 }

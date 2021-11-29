@@ -3,7 +3,8 @@
         "calculate": "Calculate",
         "calculator": "Calculator",
         "about": "About",
-        "pleaseSelect": "Please select"
+        "pleaseSelect": "Please select",
+        "loading": "Loading"
     },
     "units" : {
         "kg": {
