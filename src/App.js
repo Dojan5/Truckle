@@ -1,9 +1,8 @@
 import "./App.scss";
-import gwTable from "./grossWeightTable.json";
-import rlTable from "./roadLoadTable.json";
+import gwTable from "./data/grossWeightTable.json";
+import rlTable from "./data/roadLoadTable.json";
 import React, { useState } from "react";
-import { Titlebar } from "./components/titlebar";
-import { Menubar } from "./components/menubar";
+import { calculate as calculateTS } from "./functions/calculations.ts";
 
 function App() {
   const [serviceWeight, setServiceWeight] = useState(12000);
@@ -32,64 +31,31 @@ function App() {
   };
 
   const handleFrontAxleChange = (evt) => {
-    let values = rlTable[evt.target.value];
-    setFrontAxle(values);
+    setFrontAxle(evt.target.value);
   };
 
   const handleBackAxleChange = (evt) => {
-    let values = rlTable[evt.target.value];
-    setBackAxle(values);
+    setBackAxle(evt.target.value);
   };
 
   const handleGrossWeightChange = (evt) => {
-    let values = gwTable[evt.target.value];
-    setGrossWeight(values);
-  };
-
-  const doCalculate = (bk) => {
-    let frontOverrideValue =
-      frontAxleOverride < 1000 ? frontAxleOverride : frontAxleOverride / 1000;
-    let backOverrideValue =
-      backAxleOverride < 1000 ? backAxleOverride : backAxleOverride / 1000;
-    let rlFront = parseFloat(frontAxle[bk]);
-    let rlBack = parseFloat(backAxle[bk]);
-    let gW = parseFloat(grossWeight[bk]);
-
-    let frontAxleWeightAllowance =
-      frontOverrideValue <= rlFront ? frontOverrideValue : rlFront;
-    console.log(typeof frontAxleWeightAllowance);
-
-    let backAxleWeightAllowance =
-      backOverrideValue <= rlBack ? backOverrideValue : rlBack;
-    console.log(typeof backAxleWeightAllowance);
-
-    let addedTogether = frontAxleWeightAllowance + backAxleWeightAllowance;
-
-    let grossWeightAllowance = gW;
-    let result = addedTogether < grossWeightAllowance ? addedTogether : gW;
-
-    console.table({
-      frontAxleOverride,
-      backAxleOverride,
-      rlFront,
-      rlBack,
-      gW,
-      frontAxleWeightAllowance,
-      backAxleWeightAllowance,
-      addedTogether,
-      grossWeightAllowance,
-      result,
-    });
-    return result;
+    setGrossWeight(evt.target.value);
   };
 
   const calculate = (evt) => {
-    let bk1 = doCalculate(0);
-    let bk2 = doCalculate(1);
-    let bk3 = doCalculate(2);
-    let bk4 = doCalculate(3);
+    if (frontAxle === null) return;
+    if (backAxle === null) return;
+    if (grossWeight === null) return;
 
-    setResult([bk1, bk2, bk3, bk4]);
+    let result = calculateTS(
+      frontAxleOverride,
+      backAxleOverride,
+      frontAxle,
+      backAxle,
+      grossWeight
+    );
+
+    setResult(result);
   };
 
   return (
@@ -128,6 +94,7 @@ function App() {
           <div className="form-control">
             <label>Front axle</label>
             <select name="frontAxle" onChange={handleFrontAxleChange}>
+              <option value={null}>Please select</option>
               {Object.keys(rlTable).map((key) => (
                 <option value={key}>{key}</option>
               ))}
@@ -136,6 +103,7 @@ function App() {
           <div className="form-control">
             <label>Back axle</label>
             <select name="backAxle" onChange={handleBackAxleChange}>
+              <option value={null}>Please select</option>
               {Object.keys(rlTable).map((key) => (
                 <option value={key}>{key}</option>
               ))}
@@ -144,6 +112,7 @@ function App() {
           <div className="form-control">
             <label>Weight Table</label>
             <select name="grossWeight" onChange={handleGrossWeightChange}>
+              <option value={null}>Please select</option>
               {Object.keys(gwTable).map((key) => (
                 <option value={key}>{key}</option>
               ))}
@@ -164,13 +133,17 @@ function App() {
                 <tr>
                   <td className="header">BK{i + 1}</td>
                   <td className="text-center">
-                    {displayKilos ? (<span>{r * 1000} kg</span>) : (<span>{r} t</span>)}
+                    {displayKilos ? (
+                      <span>{r} kg</span>
+                    ) : (
+                      <span>{r / 1000} t</span>
+                    )}
                   </td>
                   <td className="text-right">
                     {displayKilos ? (
-                      <span>{r * 1000 - serviceWeight} kg</span>
+                      <span>{r - serviceWeight} kg</span>
                     ) : (
-                      <span>{r - serviceWeight} t</span>
+                      <span>{r / 1000 - serviceWeight} t</span>
                     )}
                   </td>
                 </tr>
@@ -178,9 +151,9 @@ function App() {
             </tbody>
           </table>
           <div className="unit-toggle">
-            <label
-              onClick={() => setDisplayKilos(!displayKilos)}
-            >Display in Kilogram</label>
+            <label onClick={() => setDisplayKilos(!displayKilos)}>
+              Display in Kilogram
+            </label>
             <input
               type="checkbox"
               checked={displayKilos}
