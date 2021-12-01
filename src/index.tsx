@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AboutPage, LoadingPage } from './pages';
+import { AboutPage, LoadingPage, SettingsPage } from './pages';
 import { Menubar } from './components';
 import App from './App';
 import 'normalize.css';
@@ -16,6 +16,7 @@ ReactDOM.render(
           <Routes>
             <Route path="/" element={<App />} />
             <Route path="/loading" element={<LoadingPage />} />
+            <Route path="/settings" element={<SettingsPage />} />
             <Route path="/about" element={<AboutPage />} />
           </Routes>
         </section>

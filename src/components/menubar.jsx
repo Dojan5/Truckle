@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
-import { CalculatorIcon, InformationIcon } from '../icons'; 
+import { CalculatorIcon, InformationIcon, SettingsIcon } from '../icons'; 
 
 export const Menubar = () => {
     const [t] = useTranslation();
@@ -9,9 +9,7 @@ export const Menubar = () => {
     return (
         <nav className="app-menu">
             <MenuButton to="/" icon={<CalculatorIcon />}>{t("interface.calculator")}</MenuButton>
-            {(process.env.NODE_ENV && process.env.NODE_ENV === 'development') && (
-                <MenuButton to="/loading">Loading</MenuButton>
-            )}
+            <MenuButton to="/settings" icon={<SettingsIcon />}>{t("interface.settings")}</MenuButton>
             <MenuButton to="/about" icon={<InformationIcon />}>{t("interface.about")}</MenuButton>
         </nav>
     )
