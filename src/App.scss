@@ -18,6 +18,9 @@ body {
   display: flex;
   flex-direction: column;
   background: #f1edee;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none;
 }
 
 #root {
@@ -40,16 +43,24 @@ body {
   display: flex;
   flex: 1;
   flex-direction: column;
-  margin-top: 1rem;
+  margin-top: calc(1rem + env(safe-area-inset-top))
 }
 
 .btn {
-  background: #3d5467;
+  background: $primary;
   border: none;
   margin: 1rem;
   padding: 1rem;
   border-radius: $radius;
   color: white;
+	&:active {
+		background: darken($primary, 10%);
+	}
+	@media (hover: hover) {
+		&:hover {
+			background: magenta;
+		}
+	}
 }
 
 fieldset {
@@ -157,7 +168,7 @@ section.app-content {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin-bottom: calc($menubarHeight + env(safe-area-inset-bottom));
+  margin-bottom: calc(#{$menubarHeight} + env(safe-area-inset-bottom));
   padding-bottom: 1rem;
 }
 
@@ -187,6 +198,7 @@ nav.app-menu {
       color: white;
     }
     &.active {
+			background-color: darken($primary, 10%);
       border-color: white;
     }
   }
