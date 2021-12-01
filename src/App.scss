@@ -167,7 +167,7 @@ section.app-content {
   flex: 1;
   flex-direction: column;
   margin-top: calc(1rem + env(safe-area-inset-top));
-  margin-bottom: calc(#{$menubarHeight} + env(safe-area-inset-top));;
+  margin-bottom: calc(#{$menubarHeight} + env(safe-area-inset-bottom));;
 }
 
 nav.app-menu {
