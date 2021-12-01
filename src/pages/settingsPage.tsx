@@ -1,5 +1,9 @@
 import React from 'react'
+import { LanguageSwitcher, UnitSelector } from '../components'
 
 export const SettingsPage = () => (
-    <h1>Settings</h1>
+    <>
+        <LanguageSwitcher />
+        <UnitSelector />
+    </>
 )

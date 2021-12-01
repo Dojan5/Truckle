@@ -3,12 +3,13 @@
         "calculate": "Beräkna",
         "calculator": "Kalkylator",
         "about": "Om",
+        "settings": "Inställningar",
         "pleaseSelect": "Välj",
         "loading": "Laddar",
         "language": "Språk"
     },
     "units" : {
-        "label": "Mått",
+        "label": "Mått (ej implementerat)",
         "kg": {
             "name": "kilo",
             "shorthand": "kg"
@@ -16,6 +17,14 @@
         "tn": {
             "name": "ton",
             "shorthand": "t"
+        },
+        "mm": {
+            "name": "millimeter",
+            "shorthand": "mm"
+        },
+        "metres": {
+            "name": "meter",
+            "shorthand": "m"
         }
     },
     "vehicleSpecification": "Fordonsinställningar",
@@ -29,5 +38,13 @@
     "weightTable": "Axelavstånd",
     "class": "Klass",
     "weightAllowance": "Lastvikt",
-    "allowedLoad": "Tillåten lastvikt"
+    "allowedLoad": "Tillåten lastvikt",
+    "axleTypes": {
+        "singleAxleNoPower": "Ej drivande axel",
+        "singleAxleWithPower": "Drivande axel",
+        "boggi": "Boggi",
+        "boggiVVF": "Boggi (vägvänlig fjädring)",
+        "boggi18plus": "Boggi (axelavstånd 1.8m+)",
+        "triple": "Trippelaxel"
+    }
 }

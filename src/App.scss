@@ -44,13 +44,6 @@ body {
   }
 }
 
-.App {
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  margin-top: calc(1rem + env(safe-area-inset-top))
-}
-
 .btn {
   background: $primary;
   border: none;
@@ -171,10 +164,10 @@ fieldset {
 
 section.app-content {
   display: flex;
-  flex-direction: column;
   flex: 1;
-  margin-bottom: calc(#{$menubarHeight} + env(safe-area-inset-bottom));
-  padding-bottom: 1rem;
+  flex-direction: column;
+  margin-top: calc(1rem + env(safe-area-inset-top));
+  margin-bottom: calc(#{$menubarHeight} + env(safe-area-inset-top));;
 }
 
 nav.app-menu {
@@ -256,7 +249,7 @@ nav.app-menu {
 section.about-page {
   height: 100%;
   color: #333;
-  padding: 1rem;
+  padding: 0 1rem;
   h1 {
     font-family: "Arimo", sans-serif;
   }

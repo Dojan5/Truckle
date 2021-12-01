@@ -1,5 +1,4 @@
 import React from 'react';
-import { LanguageSwitcher } from '../components';
 import Teeko from '../icons/teeko.jpg';
 
 export const AboutPage = () => {
@@ -13,7 +12,6 @@ export const AboutPage = () => {
                 <p>Please enjoy this picture of my dog, Teeko.</p>
                 <img alt="Teeko" src={Teeko} className="teeko-image" />
             </section>
-            <LanguageSwitcher />
         </>
     )
 }

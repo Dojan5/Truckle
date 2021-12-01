@@ -9,7 +9,7 @@
         "language": "Language"
     },
     "units" : {
-        "label": "Units",
+        "label": "Units (not implemented)",
         "kg": {
             "name": "kilogramme",
             "shorthand": "kg"
@@ -17,6 +17,14 @@
         "tn": {
             "name": "tonne",
             "shorthand": "t"
+        },
+        "mm": {
+            "name": "millimetre",
+            "shorthand": "mm"
+        },
+        "metres": {
+            "name": "metre",
+            "shorthand": "m"
         }
     },
     "vehicleSpecification": "Vehicle specification",
@@ -30,5 +38,13 @@
     "weightTable": "Axle distance",
     "class": "Class",
     "weightAllowance": "Weight allowance",
-    "allowedLoad": "Allowed load"
+    "allowedLoad": "Allowed load",
+    "axleTypes": {
+        "singleAxleNoPower": "Single axle (non-driven)",
+        "singleAxleWithPower": "Single axle (driven)",
+        "boggi": "Bogey",
+        "boggi18plus": "Bogey (axle-distance 1.8m+)",
+        "boggiVVF": "Bogey (air suspension)",
+        "triple": "Triple axle"
+    }
 }
