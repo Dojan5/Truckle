@@ -1645,6 +1645,11 @@
   dependencies:
     "@babel/runtime" "^7.12.5"
 
+"@types/ackee-tracker@*":
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/@types/ackee-tracker/-/ackee-tracker-5.0.2.tgz#f8440a4257431ab111ce10caa9394b8fc72e111a"
+  integrity sha512-0ieQOQmXlud6ez+USJLLdiXlo1if+vetB5ep0YpiE2IY+AzuEZe50ohbSNZq2VbbwG9ZBW2GhKShKEczRkmHuw==
+
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -1859,6 +1864,13 @@
   integrity sha512-sYAF+CF9XZ5cvEBkI7RtrG9g2GtMBkviTnBxYYyq+8BWvO4QtXfwwR6a2LFwCi4evMKZfpv6U43ViYvv17Wz3Q==
   dependencies:
     source-map "^0.6.1"
+
+"@types/use-ackee@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/use-ackee/-/use-ackee-2.0.0.tgz#0b29083a18b413215c5add229eb3096866d7e764"
+  integrity sha512-rLKdPEdtXZxfbBfptlRPV1DqJgNSVHYtHotlv8sc3bKmm0LCQ9yNARExGQL4zJ/CF2Wq5sD37LwRRraPiWOewA==
+  dependencies:
+    "@types/ackee-tracker" "*"
 
 "@types/webpack-sources@*":
   version "2.1.0"
@@ -2174,6 +2186,13 @@ accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
   dependencies:
     mime-types "~2.1.24"
     negotiator "0.6.2"
+
+ackee-tracker@^5.0.1:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/ackee-tracker/-/ackee-tracker-5.1.0.tgz#6c41ea5357973347c7c67a26009053bcc0345def"
+  integrity sha512-A7iKkGyUnEXuOzxultQB7hnm4bStYCo1c38MYRRihBfqUP8AImhtZOODb00t9xrXs/BTsg06bz1MKpXeMs9sYw==
+  dependencies:
+    platform "^1.3.6"
 
 acorn-globals@^6.0.0:
   version "6.0.0"
@@ -8141,6 +8160,11 @@ pkg-up@3.1.0:
   dependencies:
     find-up "^3.0.0"
 
+platform@^1.3.6:
+  version "1.3.6"
+  resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.6.tgz#48b4ce983164b209c2d45a107adb31f473a6e7a7"
+  integrity sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==
+
 pnp-webpack-plugin@1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/pnp-webpack-plugin/-/pnp-webpack-plugin-1.6.4.tgz#c9711ac4dc48a685dabafc86f8b6dd9f8df84149"
@@ -10984,6 +11008,13 @@ url@^0.11.0:
   dependencies:
     punycode "1.3.2"
     querystring "0.2.0"
+
+use-ackee@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/use-ackee/-/use-ackee-3.0.0.tgz#d6ef77e68432765501691dba01a040bdda618a51"
+  integrity sha512-vErgP/OnZhSsxes8P/bePQqnjx8fV35iQsNBH+PomnNhHNl8CyRZqq1/gibaj9hF3edqKBr8CNOKSsnIYuycLw==
+  dependencies:
+    ackee-tracker "^5.0.1"
 
 use@^3.1.0:
   version "3.1.1"
