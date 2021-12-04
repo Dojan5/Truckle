@@ -29,6 +29,7 @@
     },
     "vehicleSpecification": "Vehicle specification",
     "registrationNumber": "Registration number",
+    "taxedWeight": "Taxed weight",
     "vehicleWeight": "Vehicle weight",
     "frontAxleOverride": "Front axle override",
     "backAxleOverride": "Back axle override",

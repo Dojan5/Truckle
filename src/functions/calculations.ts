@@ -23,26 +23,29 @@ interface DataTable {
 }
 
 export function calculate(
+    taxedWeight: number,
     frontAxleOverride: number,
     backAxleOverride: number,
     frontAxleTableKey: string,
     backAxleTableKey: string,
     grossWeightTableKey: string
 ): CalculationResult {
+    let taxedWeightInKg: number = convertToKilo(taxedWeight);
     let frontAxleOverrideInKg: number = convertToKilo(frontAxleOverride);
     let backAxleOverrideInKg: number = convertToKilo(backAxleOverride);
 
     //Calculate
-    let bk1 = calculateBearingClass(frontAxleOverrideInKg, backAxleOverrideInKg, frontAxleTableKey, backAxleTableKey, grossWeightTableKey, BearingClass.BK1);
-    let bk2 = calculateBearingClass(frontAxleOverrideInKg, backAxleOverrideInKg, frontAxleTableKey, backAxleTableKey, grossWeightTableKey, BearingClass.BK2);
-    let bk3 = calculateBearingClass(frontAxleOverrideInKg, backAxleOverrideInKg, frontAxleTableKey, backAxleTableKey, grossWeightTableKey, BearingClass.BK3);
-    let bk4 = calculateBearingClass(frontAxleOverrideInKg, backAxleOverrideInKg, frontAxleTableKey, backAxleTableKey, grossWeightTableKey, BearingClass.BK4);
+    let bk1 = calculateBearingClass(taxedWeightInKg, frontAxleOverrideInKg, backAxleOverrideInKg, frontAxleTableKey, backAxleTableKey, grossWeightTableKey, BearingClass.BK1);
+    let bk2 = calculateBearingClass(taxedWeightInKg, frontAxleOverrideInKg, backAxleOverrideInKg, frontAxleTableKey, backAxleTableKey, grossWeightTableKey, BearingClass.BK2);
+    let bk3 = calculateBearingClass(taxedWeightInKg, frontAxleOverrideInKg, backAxleOverrideInKg, frontAxleTableKey, backAxleTableKey, grossWeightTableKey, BearingClass.BK3);
+    let bk4 = calculateBearingClass(taxedWeightInKg, frontAxleOverrideInKg, backAxleOverrideInKg, frontAxleTableKey, backAxleTableKey, grossWeightTableKey, BearingClass.BK4);
 
     let result = [bk1, bk2, bk3, bk4] as CalculationResult;
     return result;
 }
 
 function calculateBearingClass(
+    taxedWeight: number,
     frontAxleOverride: number,
     backAxleOverride: number,
     frontAxleTableKey: string,
@@ -62,12 +65,15 @@ function calculateBearingClass(
     let backAxleWeightAllowance = (backAxleOverride <= backAxleTableValue)
         ? backAxleOverride
         : backAxleTableValue;
-    
+
     let vehicleWeightAllowanceSum = frontAxleWeightAllowance + backAxleWeightAllowance;
 
     let grossWeightAllowance = (vehicleWeightAllowanceSum <= grossWeightTableValue)
         ? vehicleWeightAllowanceSum
         : grossWeightTableValue;
+
+    if (grossWeightAllowance > taxedWeight)
+        return taxedWeight;
 
     return grossWeightAllowance;
 }
@@ -86,7 +92,7 @@ export function convertToMillimetres(value: number): number {
 
 export function calculateAllowedLoad(weightAllowance: number, serviceWeight: number): number {
     let value = ((weightAllowance - serviceWeight) < 0) ? 0 : (weightAllowance - serviceWeight);
-    return value; 
+    return value;
 }
 
 function getGrossWeightValue(key: string, bk: BearingClass): number {

@@ -26,7 +26,8 @@ const Content = () => {
     server: 'https://ackee.grovecastle.me',
     domainId: 'ae65943e-cd8e-4141-900a-12973a1f661f'
   }, {
-    detailed: true
+    detailed: true,
+    ignoreLocalhost: true
   });
 
   return (

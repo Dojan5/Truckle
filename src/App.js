@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 function App() {
   const [t] = useTranslation();
   const [serviceWeight, setServiceWeight] = useState(12000);
+  const [taxedWeight, setTaxedWeight] = useState(0);
   const [frontAxleOverride, setFrontAxleOverride] = useState(0);
   const [backAxleOverride, setBackAxleOverride] = useState(0);
   const [frontAxle, setFrontAxle] = useState(null);
@@ -27,6 +28,11 @@ function App() {
     let value = parseFloat(evt.target.value);
     setServiceWeight(value);
   };
+
+  const handleTaxedWeightChange = (evt) => {
+    let value = parseFloat(evt.target.value);
+    setTaxedWeight(value);
+  }
 
   const handleFrontOverrideChange = (evt) => {
     let value = parseFloat(evt.target.value);
@@ -76,6 +82,7 @@ function App() {
     if (grossWeight === null || backAxle === undefined) return;
 
     let result = calculateTS(
+      taxedWeight,
       frontAxleOverride,
       backAxleOverride,
       frontAxle,
@@ -98,6 +105,16 @@ function App() {
             value={serviceWeight}
             onFocus={handleNumericInputFocus}
             onChange={handleServiceWeightChange}
+            pattern="[0-9]*"
+          />
+        </div>
+        <div className="form-control">
+          <label>{t("taxedWeight")}</label>
+          <input 
+            value={taxedWeight}
+            onFocus={handleNumericInputFocus}
+            onChange={handleTaxedWeightChange}
+            type="number"
             pattern="[0-9]*"
           />
         </div>

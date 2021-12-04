@@ -29,6 +29,7 @@
     },
     "vehicleSpecification": "Fordonsinställningar",
     "registrationNumber": "Registreringsnummer",
+    "taxedWeight": "Skattevikt",
     "vehicleWeight": "Tjänstevikt",
     "frontAxleOverride": "Axelbelastning (fram)",
     "backAxleOverride": "Axelbelastning (bak)",
