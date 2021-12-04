@@ -3,16 +3,11 @@
 $radius: 5px;
 $menubarHeight: 64px;
 $primary: #3d5467;
-$fancy-gradient: linear-gradient(
-  45deg,
-  #E67229,
-  #d029e6,
-  #294ce6
-);
+$fancy-gradient: linear-gradient(45deg, #e67229, #d029e6, #294ce6);
 $fancy-animation: bg-animation 45s infinite alternate;
 
 html {
-	touch-action: manipulation;
+  touch-action: manipulation;
 }
 
 html,
@@ -23,15 +18,19 @@ body {
   display: flex;
   flex-direction: column;
   background: #f1edee;
-	user-select: none;
-	-webkit-tap-highlight-color: transparent;
-	-webkit-touch-callout: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 #root {
   flex: 1;
   display: flex;
   flex-direction: column;
+  // @media screen and (min-width: 480px) {
+  //   max-width: 480px;
+  //   justify-self: center;
+  // }
 }
 
 .titlebar {
@@ -51,14 +50,14 @@ body {
   padding: 1rem;
   border-radius: $radius;
   color: white;
-	&:active {
-		background: darken($primary, 10%);
-	}
-	@media (hover: hover) {
-		&:hover {
-			background: lighten($primary, 10%);
-		}
-	}
+  &:active {
+    background: darken($primary, 10%);
+  }
+  @media (hover: hover) {
+    &:hover {
+      background: lighten($primary, 10%);
+    }
+  }
 }
 
 fieldset {
@@ -114,14 +113,14 @@ fieldset {
 .unit-toggle {
   display: inline-flex;
   align-items: center;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
   margin-left: auto;
   & label {
     font-size: 12px;
     color: white;
   }
   & input {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
   }
 }
 
@@ -132,7 +131,7 @@ fieldset {
   margin: 0 1rem 0 1rem;
   margin-top: auto;
   overflow: hidden;
-  padding: .25rem;
+  padding: 0.25rem;
 
   border-radius: $radius;
   & table {
@@ -153,7 +152,7 @@ fieldset {
       text-align: right;
     }
     & .header {
-        font-family: "Arimo", sans-serif;
+      font-family: "Arimo", sans-serif;
       font-weight: bold;
       color: white;
       padding: 0.25rem;
@@ -167,7 +166,7 @@ section.app-content {
   flex: 1;
   flex-direction: column;
   margin-top: calc(1rem + env(safe-area-inset-top));
-  margin-bottom: calc(#{$menubarHeight} + env(safe-area-inset-bottom));;
+  margin-bottom: calc(#{$menubarHeight} + env(safe-area-inset-bottom));
 }
 
 nav.app-menu {
@@ -179,7 +178,7 @@ nav.app-menu {
   display: flex;
   flex-direction: row;
   justify-content: center;
-	padding-bottom: env(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
   & button.menu-button {
     flex-basis: 0;
     flex: 1 1 0;
@@ -192,12 +191,12 @@ nav.app-menu {
     justify-content: center;
     align-items: center;
     color: white;
-		opacity: .5;
+    opacity: 0.5;
     & img.icon {
       color: white;
     }
     &.active {
-			opacity: 1;
+      opacity: 1;
     }
   }
 }
@@ -217,10 +216,10 @@ nav.app-menu {
     & span {
       display: block;
       box-sizing: border-box;
-      padding: .25rem;
+      padding: 0.25rem;
       width: 100%;
       height: 100%;
-      border: .5rem solid $primary;
+      border: 0.5rem solid $primary;
       border-bottom-color: transparent;
       border-radius: 256px;
       animation: loading-spinner 2500ms linear infinite;
@@ -261,7 +260,7 @@ fieldset.language-switcher {
   justify-content: space-between;
   & button {
     flex: 1;
-    margin: .5rem;
+    margin: 0.5rem;
     background: #eee;
     color: $primary;
     border: none;
@@ -285,50 +284,56 @@ a.spiffy-link {
   color: transparent;
 }
 
-img.teeko-image { width: 100%; }
+img.teeko-image {
+  width: 100%;
+}
 
 @keyframes bg-animation {
-  0% { background-position: left; }
-  100% { background-position: right; }
+  0% {
+    background-position: left;
+  }
+  100% {
+    background-position: right;
+  }
 }
 
 .toggle-switch {
-	$width: 4rem;
-	$height: $width / 2;
-	$animation: all 175ms ease-in-out 0s;
-	background-color: none;
-	position: relative;
-	display: inline-block;
-	width: $width;
-	height: $height;
-	transform: scale(.8);
-	&-input {
-		display: none;
-	}
-	&-label {
-		display: block;
-		width: inherit;
-		height: inherit;
-		background-color: darken($primary, 10%);
-		border-radius: $width;
-		transition: $animation;
-		overflow: hidden;
-		box-shadow: inset 0 .25rem .2rem 0rem rgba(0,0,0,.35);
-	}
-	&-button {
-		display: block;
-		background-color: #eee;
-		width: $height;
-		height: $height;
-		border-radius: $height;
-		scale: .8;
-		margin-left: 0;
-		transition: $animation;
-	}
-	&-input:checked + &-label {
-		background-color: lighten($primary, 10%);
-		.toggle-switch-button {
-			margin-left: calc(100% - #{$height});
-		}
-	}
+  $width: 4rem;
+  $height: $width / 2;
+  $animation: all 175ms ease-in-out 0s;
+  background-color: none;
+  position: relative;
+  display: inline-block;
+  width: $width;
+  height: $height;
+  transform: scale(0.8);
+  &-input {
+    display: none;
+  }
+  &-label {
+    display: block;
+    width: inherit;
+    height: inherit;
+    background-color: darken($primary, 10%);
+    border-radius: $width;
+    transition: $animation;
+    overflow: hidden;
+    box-shadow: inset 0 0.25rem 0.2rem 0rem rgba(0, 0, 0, 0.35);
+  }
+  &-button {
+    display: block;
+    background-color: #eee;
+    width: $height;
+    height: $height;
+    border-radius: $height;
+    scale: 0.8;
+    margin-left: 0;
+    transition: $animation;
+  }
+  &-input:checked + &-label {
+    background-color: lighten($primary, 10%);
+    .toggle-switch-button {
+      margin-left: calc(100% - #{$height});
+    }
+  }
 }
