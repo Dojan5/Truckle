@@ -8,6 +8,13 @@ import App from './App';
 import 'normalize.css';
 import reportWebVitals from './reportWebVitals';
 import './localisation/i18n';
+import { akitaDevtools, persistState } from '@datorama/akita';
+
+if(process.env.NODE_ENV && process.env.NODE_ENV === 'development') {
+  akitaDevtools({name: "Truckle"});
+}
+
+const storage = persistState();
 
 const Main = () => (
   <React.StrictMode>

@@ -2,7 +2,8 @@ import "./App.scss";
 import gwTable from "./data/grossWeightTable.json";
 import rlTable from "./data/roadLoadTable.json";
 import React, { useState } from "react";
-import { ToggleSwitch } from "./components/toggleSwitch.tsx";
+import { settingsQuery } from "./data/stores/settings";
+import { useObservable } from "@ngneat/use-observable";
 import {
   calculate as calculateTS,
   calculateAllowedLoad,
@@ -20,7 +21,7 @@ function App() {
   const [frontAxle, setFrontAxle] = useState(null);
   const [backAxle, setBackAxle] = useState(null);
   const [grossWeight, setGrossWeight] = useState(null);
-  const [displayKilos, setDisplayKilos] = useState(true);
+  const [state] = useObservable(settingsQuery.state$);
 
   const [result, setResult] = useState([0, 0, 0, 0]);
 
@@ -164,12 +165,12 @@ function App() {
           </select>
         </div>
         <div className="form-control">
-          <label>{t("weightTable")} ({t('units.mm.shorthand')})</label>
+          <label>{t("weightTable")} ({state.displayInMillimetres ? t('units.mm.shorthand') : t('units.m.shorthand')})</label>
           <select name="grossWeight" onChange={handleGrossWeightChange}>
             <option value={null}>{t("interface.pleaseSelect")}</option>
             {Object.keys(gwTable).map((key) => (
               <option key={"gw" + key} value={key}>
-                {convertToMillimetres(parseFloat(key))}
+                {state.displayInMillimetres ? convertToMillimetres(parseFloat(key)) : key}
               </option>
             ))}
           </select>
@@ -189,14 +190,14 @@ function App() {
               <tr key={"r" + i}>
                 <td className="header">BK{i + 1}</td>
                 <td className="text-center">
-                  {displayKilos ? (
+                  {state.displayInKilos ? (
                     <span>{r} kg</span>
                   ) : (
                     <span>{convertToTonnes(r)} t</span>
                   )}
                 </td>
                 <td className="text-right">
-                  {displayKilos ? (
+                  {state.displayInKilos ? (
                     <span>{calculateAllowedLoad(r, serviceWeight)} kg</span>
                   ) : (
                     <span>
@@ -209,13 +210,6 @@ function App() {
             ))}
           </tbody>
         </table>
-        <div className="unit-toggle">
-          <ToggleSwitch
-            name="kiloToggler"
-            onChange={() => setDisplayKilos(!displayKilos)}
-            checked={displayKilos}
-          />
-        </div>
       </div>
       <button onClick={() => calculate()} className="btn">
         {t("interface.calculate")}

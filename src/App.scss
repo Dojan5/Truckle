@@ -306,7 +306,7 @@ img.teeko-image {
   display: inline-block;
   width: $width;
   height: $height;
-  transform: scale(0.8);
+  transform: scale(0.7);
   &-input {
     display: none;
   }
@@ -335,5 +335,17 @@ img.teeko-image {
     .toggle-switch-button {
       margin-left: calc(100% - #{$height});
     }
+  }
+}
+
+.settings-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &:first-of-type {
+    margin-top: .5rem;
+  }
+  &:not(:last-child) {
+    margin-bottom: .75rem;
   }
 }

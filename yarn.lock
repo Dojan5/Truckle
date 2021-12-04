@@ -1517,6 +1517,11 @@
     "@types/yargs" "^16.0.0"
     chalk "^4.0.0"
 
+"@ngneat/use-observable@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/use-observable/-/use-observable-1.0.0.tgz#e94ca47a79f05a26b8f4d821c8928da22f8ffa71"
+  integrity sha512-r8AwH3hI5zNI/nV1/X6XzCfmVQ0NPF+WDRbc6xQ0ZVhwsbaMPYsiKxr7wEDzWUMIN5iIMsScBs2g7oQRL0Xg3A==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"

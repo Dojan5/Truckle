@@ -9,7 +9,7 @@
         "language": "Language"
     },
     "units" : {
-        "label": "Units (not implemented)",
+        "label": "Units",
         "kg": {
             "name": "kilogramme",
             "shorthand": "kg"
@@ -22,10 +22,14 @@
             "name": "millimetre",
             "shorthand": "mm"
         },
-        "metres": {
+        "m": {
             "name": "metre",
             "shorthand": "m"
         }
+    },
+    "settingsPanel": {
+        "weightUnit": "Display weight in kilo",
+        "axleDistanceUnit": "Axle distance in millimetres"
     },
     "vehicleSpecification": "Vehicle specification",
     "registrationNumber": "Registration number",

@@ -9,7 +9,7 @@
         "language": "Språk"
     },
     "units" : {
-        "label": "Mått (ej implementerat)",
+        "label": "Mått",
         "kg": {
             "name": "kilo",
             "shorthand": "kg"
@@ -22,10 +22,14 @@
             "name": "millimeter",
             "shorthand": "mm"
         },
-        "metres": {
+        "m": {
             "name": "meter",
             "shorthand": "m"
         }
+    },
+    "settingsPanel": {
+        "weightUnit": "Visa vikt i kilo",
+        "axleDistanceUnit": "Visa axeldistans i millimeter"
     },
     "vehicleSpecification": "Fordonsinställningar",
     "registrationNumber": "Registreringsnummer",
