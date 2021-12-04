@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 
 function App() {
   const [t] = useTranslation();
-  const [serviceWeight, setServiceWeight] = useState(12000);
+  const [serviceWeight, setServiceWeight] = useState(0);
   const [taxedWeight, setTaxedWeight] = useState(0);
   const [frontAxleOverride, setFrontAxleOverride] = useState(0);
   const [backAxleOverride, setBackAxleOverride] = useState(0);

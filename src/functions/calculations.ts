@@ -72,7 +72,8 @@ function calculateBearingClass(
         ? vehicleWeightAllowanceSum
         : grossWeightTableValue;
 
-    if (grossWeightAllowance > taxedWeight)
+    //Only return taxed weight if it's smaller than the GWA, but actually has a value, otherwise ignore
+    if (grossWeightAllowance > taxedWeight && taxedWeight > 0)
         return taxedWeight;
 
     return grossWeightAllowance;
